@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1B6B718321D1A8FE0034CF7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B718221D1A8FE0034CF7A /* AppDelegate.swift */; };
-		1B6B718521D1A8FE0034CF7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B718421D1A8FE0034CF7A /* ViewController.swift */; };
 		1B6B718821D1A8FE0034CF7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B718621D1A8FE0034CF7A /* Main.storyboard */; };
 		1B6B718A21D1A8FF0034CF7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B718921D1A8FF0034CF7A /* Assets.xcassets */; };
 		1B6B718D21D1A8FF0034CF7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B718B21D1A8FF0034CF7A /* LaunchScreen.storyboard */; };
+		1B6B719521D1ADBC0034CF7A /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B719421D1ADBC0034CF7A /* CalculatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B6B717F21D1A8FE0034CF7A /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B6B718221D1A8FE0034CF7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1B6B718421D1A8FE0034CF7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1B6B718721D1A8FE0034CF7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B6B718921D1A8FF0034CF7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B6B718C21D1A8FF0034CF7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B6B718E21D1A8FF0034CF7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B6B719421D1ADBC0034CF7A /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				1B6B718221D1A8FE0034CF7A /* AppDelegate.swift */,
-				1B6B718421D1A8FE0034CF7A /* ViewController.swift */,
 				1B6B718621D1A8FE0034CF7A /* Main.storyboard */,
+				1B6B719421D1ADBC0034CF7A /* CalculatorViewController.swift */,
 				1B6B718921D1A8FF0034CF7A /* Assets.xcassets */,
 				1B6B718B21D1A8FF0034CF7A /* LaunchScreen.storyboard */,
 				1B6B718E21D1A8FF0034CF7A /* Info.plist */,
@@ -74,6 +74,7 @@
 				1B6B717B21D1A8FE0034CF7A /* Sources */,
 				1B6B717C21D1A8FE0034CF7A /* Frameworks */,
 				1B6B717D21D1A8FE0034CF7A /* Resources */,
+				1B135F2021D6A2ED00850242 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -130,12 +131,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B135F2021D6A2ED00850242 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1B6B717B21D1A8FE0034CF7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B6B718521D1A8FE0034CF7A /* ViewController.swift in Sources */,
+				1B6B719521D1ADBC0034CF7A /* CalculatorViewController.swift in Sources */,
 				1B6B718321D1A8FE0034CF7A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +313,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevelederer.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +331,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevelederer.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
