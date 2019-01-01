@@ -43,64 +43,9 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButtons()
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            setupButtons()
-        } else {
-            print("Portrait")
-            setupButtons()
-        }
     }
     
     // MARK: - Setup
-    
-    func setupButtons() {
-        let buttonBounds = equalsButton.bounds.size.width
-        clearButton.layer.cornerRadius = 0.5 * buttonBounds
-        clearButton.clipsToBounds = true
-        plusMinusButton.layer.cornerRadius = 0.5 * buttonBounds
-        plusMinusButton.clipsToBounds = true
-        percentButton.layer.cornerRadius = 0.5 * buttonBounds
-        percentButton.clipsToBounds = true
-        divideButton.layer.cornerRadius = 0.5 * buttonBounds
-        divideButton.clipsToBounds = true
-        multiplyButton.layer.cornerRadius = 0.5 * buttonBounds
-        multiplyButton.clipsToBounds = true
-        minusButton.layer.cornerRadius = 0.5 * buttonBounds
-        minusButton.clipsToBounds = true
-        plusButton.layer.cornerRadius = 0.5 * buttonBounds
-        plusButton.clipsToBounds = true
-        equalsButton.layer.cornerRadius = 0.5 * buttonBounds
-        equalsButton.clipsToBounds = true
-        decimalButton.layer.cornerRadius = 0.5 * buttonBounds
-        decimalButton.clipsToBounds = true
-        nineButton.layer.cornerRadius = 0.5 * buttonBounds
-        nineButton.clipsToBounds = true
-        eightButton.layer.cornerRadius = 0.5 * buttonBounds
-        eightButton.clipsToBounds = true
-        sevenButton.layer.cornerRadius = 0.5 * buttonBounds
-        sevenButton.clipsToBounds = true
-        sixButton.layer.cornerRadius = 0.5 * buttonBounds
-        sixButton.clipsToBounds = true
-        fiveButton.layer.cornerRadius = 0.5 * buttonBounds
-        fiveButton.clipsToBounds = true
-        fourButton.layer.cornerRadius = 0.5 * buttonBounds
-        fourButton.clipsToBounds = true
-        threeButton.layer.cornerRadius = 0.5 * buttonBounds
-        threeButton.clipsToBounds = true
-        twoButton.layer.cornerRadius = 0.5 * buttonBounds
-        twoButton.clipsToBounds = true
-        oneButton.layer.cornerRadius = 0.5 * buttonBounds
-        oneButton.clipsToBounds = true
-        zeroButton.layer.cornerRadius = 0.5 * buttonBounds
-        zeroButton.clipsToBounds = true
-        calculatorDisplayLabel.text = "0"
-    }
     
     func buttonSelected(button: UIButton) {
         button.isSelected = true
