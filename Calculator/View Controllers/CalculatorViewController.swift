@@ -18,35 +18,272 @@ class CalculatorViewController: UIViewController {
     var result = 0.0
     var operation = ""
     
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var plusMinusButton: UIButton!
-    @IBOutlet weak var percentButton: UIButton!
-    @IBOutlet weak var divideButton: UIButton!
-    @IBOutlet weak var multiplyButton: UIButton!
-    @IBOutlet weak var minusButton: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var equalsButton: UIButton!
-    @IBOutlet weak var nineButton: UIButton!
-    @IBOutlet weak var eightButton: UIButton!
-    @IBOutlet weak var sevenButton: UIButton!
-    @IBOutlet weak var sixButton: UIButton!
-    @IBOutlet weak var fiveButton: UIButton!
-    @IBOutlet weak var fourButton: UIButton!
-    @IBOutlet weak var threeButton: UIButton!
-    @IBOutlet weak var twoButton: UIButton!
-    @IBOutlet weak var oneButton: UIButton!
-    @IBOutlet weak var zeroButton: UIButton!
-    @IBOutlet weak var decimalButton: UIButton!
-    @IBOutlet weak var calculatorDisplayLabel: UILabel!
+    let calculatorDisplayLabel: UILabel = {
+        let label = UILabel()
+        label.contentMode = .scaleToFill
+        label.font = UIFont.systemFont(ofSize: 80)
+        label.textColor = .white
+        label.textAlignment = .right
+        return label
+    }()
+    
+    let clearButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle("AC", for: .normal)
+        return button
+    }()
+    
+    let plusMinusButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle("+/-", for: .normal)
+        return button
+    }()
+    
+    let percentButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle("%", for: .normal)
+        return button
+    }()
+    
+    let divideButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.orange
+        button.setTitle("÷", for: .normal)
+        return button
+    }()
+    
+    let multiplyButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.orange
+        button.setTitle("X", for: .normal)
+        return button
+    }()
+    
+    let subtractButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.orange
+        button.setTitle("-", for: .normal)
+        return button
+    }()
+    
+    let addButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.orange
+        button.setTitle("+", for: .normal)
+        return button
+    }()
+    
+    let equalsButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.orange
+        button.setTitle("=", for: .normal)
+        return button
+    }()
+    
+    let nineButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("9", for: .normal)
+        return button
+    }()
+    
+    let eightButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("8", for: .normal)
+        return button
+    }()
+    
+    let sevenButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("7", for: .normal)
+        return button
+    }()
+    
+    let sixButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("6", for: .normal)
+        return button
+    }()
+    
+    let fiveButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("5", for: .normal)
+        return button
+    }()
+    
+    let fourButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("4", for: .normal)
+        return button
+    }()
+    
+    let threeButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("3", for: .normal)
+        return button
+    }()
+    
+    let twoButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("2", for: .normal)
+        return button
+    }()
+    
+    let oneButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("1", for: .normal)
+        return button
+    }()
+    
+    let zeroButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle("0", for: .normal)
+        return button
+    }()
+    
+    let decimalButton: RoundButton = {
+        let button = RoundButton()
+        button.backgroundColor = UIColor.darkGray
+        button.setTitle(".", for: .normal)
+        return button
+    }()
+    
+    var row1StackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var row2StackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var row3StackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var row4StackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var row5RightStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var row5WholeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    
+    
+    var allRowsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        stackView.axis = .vertical
+        return stackView
+    }()
     
     // MARK: - ViewLifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
+        setUpViews()
     }
     
     // MARK: - Setup
     
+    func setUpViews() {
+        setUpButtons()
+        setUpCalculatorDisplayView()
+    }
+    
+    func setUpCalculatorDisplayView() {
+        view.addSubview(calculatorDisplayLabel)
+        calculatorDisplayLabel.text = "123456789"
+        
+        calculatorDisplayLabel.anchor(top: nil, bottom: allRowsStackView.topAnchor, left: allRowsStackView.leftAnchor, right: allRowsStackView.rightAnchor, paddingTop: 0, paddingBottom: 20, paddingLeft: 0, paddingRight: 0, width: 337.67, height: 95.67)
+    }
+    
+    func setUpButtons() {
+        view.addSubview(row1StackView)
+        row1StackView.addArrangedSubview(clearButton)
+        row1StackView.addArrangedSubview(plusMinusButton)
+        row1StackView.addArrangedSubview(percentButton)
+        row1StackView.addArrangedSubview(divideButton)
+        view.addSubview(row2StackView)
+        row2StackView.addArrangedSubview(sevenButton)
+        row2StackView.addArrangedSubview(eightButton)
+        row2StackView.addArrangedSubview(nineButton)
+        row2StackView.addArrangedSubview(multiplyButton)
+        view.addSubview(row3StackView)
+        row3StackView.addArrangedSubview(fourButton)
+        row3StackView.addArrangedSubview(fiveButton)
+        row3StackView.addArrangedSubview(sixButton)
+        row3StackView.addArrangedSubview(subtractButton)
+        view.addSubview(row4StackView)
+        row4StackView.addArrangedSubview(oneButton)
+        row4StackView.addArrangedSubview(twoButton)
+        row4StackView.addArrangedSubview(threeButton)
+        row4StackView.addArrangedSubview(addButton)
+        view.addSubview(row5RightStackView)
+        row5RightStackView.addArrangedSubview(decimalButton)
+        row5RightStackView.addArrangedSubview(equalsButton)
+        view.addSubview(row5WholeStackView)
+        row5WholeStackView.addArrangedSubview(zeroButton)
+        row5WholeStackView.addArrangedSubview(row5RightStackView)
+        view.addSubview(allRowsStackView)
+        allRowsStackView.addArrangedSubview(row1StackView)
+        allRowsStackView.addArrangedSubview(row2StackView)
+        allRowsStackView.addArrangedSubview(row3StackView)
+        allRowsStackView.addArrangedSubview(row4StackView)
+        allRowsStackView.addArrangedSubview(row5WholeStackView)
+        
+        allRowsStackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 277, paddingBottom: 31, paddingLeft: 18.6667, paddingRight: 18.6667, width: 337.67, height: 426)
+    }
+ /*
     func buttonSelected(button: UIButton) {
         button.isSelected = true
         button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -60,8 +297,8 @@ class CalculatorViewController: UIViewController {
     }
     
     func deselectAllButtons() {
-        buttonNotSelected(button: plusButton)
-        buttonNotSelected(button: minusButton)
+        buttonNotSelected(button: addButton)
+        buttonNotSelected(button: subtractButton)
         buttonNotSelected(button: divideButton)
         buttonNotSelected(button: multiplyButton)
     }
@@ -156,4 +393,5 @@ class CalculatorViewController: UIViewController {
         clearButton.setTitle("AC", for: .normal)
         userIsTypingNumber = false
     }
+ */
 }
