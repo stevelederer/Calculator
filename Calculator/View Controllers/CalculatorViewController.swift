@@ -22,6 +22,7 @@ class CalculatorViewController: UIViewController {
         let label = UILabel()
         label.contentMode = .scaleToFill
         label.font = UIFont.systemFont(ofSize: 80)
+        label.adjustsFontSizeToFitWidth = true
         label.textColor = .white
         label.textAlignment = .right
         return label
@@ -215,6 +216,11 @@ class CalculatorViewController: UIViewController {
         setUpViews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateFadeInButtonsOnLoad()
+    }
+    
     // MARK: - Setup
     
     func setUpViews() {
@@ -265,11 +271,36 @@ class CalculatorViewController: UIViewController {
         
         allRowsStackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 277, paddingBottom: 31, paddingLeft: 18.6667, paddingRight: 18.6667, width: 337.67, height: 426)
     }
+    
+    func animateFadeInButtonsOnLoad() {
+        self.row1StackView.alpha = 0
+        self.row2StackView.alpha = 0
+        self.row3StackView.alpha = 0
+        self.row4StackView.alpha = 0
+        self.row5WholeStackView.alpha = 0
+        self.calculatorDisplayLabel.alpha = 0
+        
+        
+        UIView.animate(withDuration: 1.3, delay: 0, options: [], animations: {
+            self.row1StackView.alpha = 1
+            self.row3StackView.alpha = 1
+            self.row5WholeStackView.alpha = 1
+//            let transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+//            self.clearButton.transform = transform
+//            self.clearButton.alpha = 1
+        }, completion: nil)
+        UIView.animate(withDuration: 1.3, delay: 0.2, options: [], animations: {
+            self.row2StackView.alpha = 1
+            self.row4StackView.alpha = 1
+            self.calculatorDisplayLabel.alpha = 1
+        }, completion: nil)
+    }
  
     func buttonSelected(button: UIButton) {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             button.backgroundColor = .white
             button.setTitleColor(UIColor(named: "OrangeButtonColor"), for: .normal)
+            
         }) { (success) in
             button.isSelected = true
         }
@@ -284,9 +315,6 @@ class CalculatorViewController: UIViewController {
         }) { (success) in
             button.isSelected = false
         }
-//        button.isSelected = false
-//        button.backgroundColor = UIColor(named: "OrangeButtonColor")
-//        button.setTitleColor(.white, for: .normal)
     }
     
     func deselectAllButtons() {
@@ -300,37 +328,97 @@ class CalculatorViewController: UIViewController {
     
     @objc func numberButtonTapped(_ sender: UIButton) {
         deselectAllButtons()
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.backgroundColor = UIColor(named: "LightGrayButtonColor")
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.backgroundColor = UIColor(named: "DarkGrayButtonColor")
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         guard let currentLabelText = calculatorDisplayLabel.text else { return }
         guard let numberTapped = sender.currentTitle else { return }
         if userIsTypingNumber {
+            let displayAnimation: CATransition = CATransition()
+            displayAnimation.duration = 0.2
+            displayAnimation.type = .reveal
+            displayAnimation.subtype = CATransitionSubtype.fromBottom
+            calculatorDisplayLabel.layer.add(displayAnimation, forKey: "changeCalculatorDisplayAnimation")
             calculatorDisplayLabel.text = currentLabelText + numberTapped
-            //            print("Number on screen: \(currentLabelText + numberTapped)")
         } else {
-            clearButton.setTitle("C", for: .normal)
             userIsTypingNumber = true
+            let displayAnimation: CATransition = CATransition()
+            displayAnimation.duration = 0.2
+            displayAnimation.type = .reveal
+            displayAnimation.subtype = CATransitionSubtype.fromBottom
+            calculatorDisplayLabel.layer.add(displayAnimation, forKey: "changeCalculatorDisplayAnimation")
             calculatorDisplayLabel.text = numberTapped
-            //            print("Number on screen: \(numberTapped)")
+            
+            let clearButtonAnimation: CATransition = CATransition()
+            clearButtonAnimation.duration = 0.2
+            clearButtonAnimation.type = .fade
+            clearButton.layer.add(clearButtonAnimation, forKey: "changeClearButtonTextTransition")
+            clearButton.setTitle("C", for: .normal)
+            
         }
     }
     
     @objc func plusMinusButtonTapped(_ sender: UIButton) {
+        
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.backgroundColor = .white
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.backgroundColor = UIColor(named: "LightGrayButtonColor")
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         userIsTypingNumber = false
         guard let textFromLabel = calculatorDisplayLabel.text, let numberAsDouble = Double(textFromLabel) else { return }
         let switchSign = numberAsDouble * -1
         calculatorDisplayLabel.text = "\(switchSign)"
-        //        print("Switch sign! Number on screen: \(switchSign)")
     }
     
     @objc func percentButtonTapped(_ sender: UIButton) {
+        
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.backgroundColor = .white
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.backgroundColor = UIColor(named: "LightGrayButtonColor")
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         userIsTypingNumber = false
         guard let textFromLabel = calculatorDisplayLabel.text, let numberAsDouble = Double(textFromLabel) else { return }
         let percentage = numberAsDouble / 100
         calculatorDisplayLabel.text = "\(percentage)"
-        //        print("Percent! Number on screen: \(percentage)")
     }
     
     @objc func operationButtonTapped(_ sender: UIButton) {
         userIsTypingNumber = false
+        
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         if sender.isSelected == false {
             deselectAllButtons()
             buttonSelected(button: sender)
@@ -344,6 +432,17 @@ class CalculatorViewController: UIViewController {
     
     @objc func equalsButtonTapped(_ sender: UIButton) {
         userIsTypingNumber = false
+        
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         deselectAllButtons()
         guard let textFromLabel = calculatorDisplayLabel.text, let secondNumberAsDouble = Double(textFromLabel) else { return }
         secondNumber = secondNumberAsDouble
@@ -362,6 +461,11 @@ class CalculatorViewController: UIViewController {
         }
         
         print("Result: \(result)")
+        let displayAnimation: CATransition = CATransition()
+        displayAnimation.duration = 0.30
+        displayAnimation.type = .moveIn
+        displayAnimation.subtype = CATransitionSubtype.fromRight
+        calculatorDisplayLabel.layer.add(displayAnimation, forKey: "changeCalculatorDisplayAnimationOnEqualsButtonTapped")
         
         if result.isNaN {
             calculatorDisplayLabel.text = "Error"
@@ -377,11 +481,30 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    @objc func clearButtonTapped(_ sender: Any) {
+    @objc func clearButtonTapped(_ sender: UIButton) {
+        
+        let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+            sender.backgroundColor = .white
+            sender.transform = sizeTransform
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
+                sender.backgroundColor = UIColor(named: "LightGrayButtonColor")
+                sender.transform = .identity
+            }, completion: nil)
+        }
+        
         firstNumber = 0
         secondNumber = 0
         operation = ""
         deselectAllButtons()
+        
+        let animation: CATransition = CATransition()
+        animation.duration = 0.3
+        animation.type = .fade
+        calculatorDisplayLabel.layer.add(animation, forKey: "clearDisplayLabel")
+        
         calculatorDisplayLabel.text = "0"
         clearButton.setTitle("AC", for: .normal)
         userIsTypingNumber = false
