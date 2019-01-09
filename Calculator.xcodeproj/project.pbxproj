@@ -13,7 +13,7 @@
 		1B6B719521D1ADBC0034CF7A /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B719421D1ADBC0034CF7A /* CalculatorViewController.swift */; };
 		1BA570B821DAED6B00148F8E /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA570B721DAED6B00148F8E /* RoundButton.swift */; };
 		1BBE0A6921E5523000FB147A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE0A6821E5523000FB147A /* UIViewExtension.swift */; };
-		1BBE0A6C21E5575200FB147A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE0A6B21E5575200FB147A /* Main.storyboard */; };
+		1BBE0A6E21E5699F00FB147A /* CalculatorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE0A6D21E5699F00FB147A /* CalculatorStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		1B6B719421D1ADBC0034CF7A /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		1BA570B721DAED6B00148F8E /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		1BBE0A6821E5523000FB147A /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		1BBE0A6B21E5575200FB147A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1BBE0A6D21E5699F00FB147A /* CalculatorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				1B6B718B21D1A8FF0034CF7A /* LaunchScreen.storyboard */,
-				1BBE0A6B21E5575200FB147A /* Main.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -98,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				1BA570B721DAED6B00148F8E /* RoundButton.swift */,
+				1BBE0A6D21E5699F00FB147A /* CalculatorStackView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -168,7 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BBE0A6C21E5575200FB147A /* Main.storyboard in Resources */,
 				1B6B718D21D1A8FF0034CF7A /* LaunchScreen.storyboard in Resources */,
 				1B6B718A21D1A8FF0034CF7A /* Assets.xcassets in Resources */,
 			);
@@ -182,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA570B821DAED6B00148F8E /* RoundButton.swift in Sources */,
+				1BBE0A6E21E5699F00FB147A /* CalculatorStackView.swift in Sources */,
 				1B6B719521D1ADBC0034CF7A /* CalculatorViewController.swift in Sources */,
 				1BBE0A6921E5523000FB147A /* UIViewExtension.swift in Sources */,
 				1B6B718321D1A8FE0034CF7A /* AppDelegate.swift in Sources */,
