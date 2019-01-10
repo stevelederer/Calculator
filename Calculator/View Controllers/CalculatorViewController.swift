@@ -221,6 +221,10 @@ class CalculatorViewController: UIViewController {
         animateFadeInButtonsOnLoad()
     }
     
+    // MARK: - UIImpactFeedbackGenerator
+    
+    let impact = UIImpactFeedbackGenerator()
+    
     // MARK: - Setup
     
     func setUpViews() {
@@ -328,6 +332,7 @@ class CalculatorViewController: UIViewController {
     
     @objc func numberButtonTapped(_ sender: UIButton) {
         deselectAllButtons()
+        impact.impactOccurred()
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction], animations: {
             sender.backgroundColor = UIColor(named: "LightGrayButtonColor")
@@ -367,6 +372,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func plusMinusButtonTapped(_ sender: UIButton) {
+        impact.impactOccurred()
         
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
@@ -387,6 +393,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func percentButtonTapped(_ sender: UIButton) {
+        impact.impactOccurred()
         
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
@@ -407,6 +414,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func operationButtonTapped(_ sender: UIButton) {
+        impact.impactOccurred()
         userIsTypingNumber = false
         
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -431,6 +439,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func equalsButtonTapped(_ sender: UIButton) {
+        impact.impactOccurred()
         userIsTypingNumber = false
         
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -482,6 +491,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func clearButtonTapped(_ sender: UIButton) {
+        impact.impactOccurred()
         
         let sizeTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
